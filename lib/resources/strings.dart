@@ -7,6 +7,7 @@ class RemoteButtonKeyStrings {
   static const String blue = "blue";
   static const String yellow = "yellow";
 
+  static const String tv = "tv";
   static const String power = "power";
 
   static const String n1 = "1";
@@ -51,6 +52,7 @@ class RemoteButtonIconWidget {
   static const Widget blue = Icon(Icons.search);
   static const Widget yellow = Icon(Icons.info_outline);
 
+  static const Widget tv = Text("AV");
   static const Widget power = Icon(Icons.power_settings_new);
 
   static const Widget n1 = Text(RemoteButtonKeyStrings.n1);
@@ -64,7 +66,7 @@ class RemoteButtonIconWidget {
   static const Widget n9 = Text(RemoteButtonKeyStrings.n9);
   static const Widget n0 = Text(RemoteButtonKeyStrings.n0);
 
-  static const Widget ok = Text(RemoteButtonKeyStrings.ok);
+  static const Widget ok = Text("OK");
   static const Widget up = Icon(Icons.arrow_drop_up);
   static const Widget down = Icon(Icons.arrow_drop_down);
   static const Widget left = Icon(Icons.arrow_left);

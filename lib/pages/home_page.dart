@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:freebox_remote_controller/widgets/num_pad_widget.dart';
+import 'package:freebox_remote_controller/widgets/buttons_sections.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -7,9 +7,21 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: NumPadWidget()
-      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                PowerRowWidget(),
+                NumPadWidget(),
+                DirectionalButtonsWidget(),
+              ],
+            ),
+          ),
+        ),
+      )
     );
   }
 }

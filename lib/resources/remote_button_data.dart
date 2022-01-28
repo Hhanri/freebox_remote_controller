@@ -8,6 +8,7 @@ class RemoteButtonsWidgets {
   static RemoteButton blue = RemoteButton(buttonKey: RemoteButtonKeyStrings.blue, buttonWidget: RemoteButtonIconWidget.blue, backgroundColor: Colors.blue);
   static RemoteButton yellow = RemoteButton(buttonKey: RemoteButtonKeyStrings.yellow, buttonWidget: RemoteButtonIconWidget.yellow, backgroundColor: Colors.yellow);
 
+  static RemoteButton tv = RemoteButton(buttonKey: RemoteButtonKeyStrings.tv, buttonWidget: RemoteButtonIconWidget.tv);
   static RemoteButton power = RemoteButton(buttonKey: RemoteButtonKeyStrings.power, buttonWidget: RemoteButtonIconWidget.power);
 
   static RemoteButton n1 = RemoteButton(buttonKey: RemoteButtonKeyStrings.n1, buttonWidget: RemoteButtonIconWidget.n1);
