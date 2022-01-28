@@ -6,21 +6,31 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: SafeArea(
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               PowerRowWidget(),
               NumPadWidget(),
               DirectionalButtonsWidget(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  VolColumnWidget(),
+                  MidColumnWidget(),
+                  ProgColumnWidget()
+                ],
+              ),
+              PlayRowWidget()
             ],
           ),
-        ),
-      )
+        )
+      ),
     );
   }
 }

@@ -42,5 +42,6 @@ class RemoteButtonsWidgets {
   static RemoteButton forward = RemoteButton(buttonKey: RemoteButtonKeyStrings.forward, buttonWidget: RemoteButtonIconWidget.forward);
 
   static RemoteButton placeholder = RemoteButton(buttonKey: RemoteButtonKeyStrings.placeholder, buttonWidget: RemoteButtonIconWidget.placeholder);
-
+  static RemoteButton volPlaceholder = RemoteButton(buttonKey: RemoteButtonKeyStrings.volPlaceholder, buttonWidget: RemoteButtonIconWidget.volPlaceholder);
+  static RemoteButton progPlaceholder = RemoteButton(buttonKey: RemoteButtonKeyStrings.progPlaceholder, buttonWidget: RemoteButtonIconWidget.progPlaceholder);
 }

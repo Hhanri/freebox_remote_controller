@@ -41,6 +41,9 @@ class RemoteButtonKeyStrings {
   static const String forward = "fwd";
 
   static const String placeholder = "";
+  static const String volPlaceholder = "";
+  static const String progPlaceholder = "";
+
 }
 
 
@@ -86,4 +89,6 @@ class RemoteButtonIconWidget {
   static const Widget forward = Icon(Icons.fast_forward);
 
   static const Widget placeholder = Text("");
+  static const Widget volPlaceholder = Text("VOL");
+  static const Widget progPlaceholder = Text("PROG");
 }
