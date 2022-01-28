@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hanri.freebox_remote_controller.freebox_remote_controller">
-   <application
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
         android:label="freebox_remote_controller"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
