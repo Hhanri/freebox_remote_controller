@@ -38,6 +38,8 @@ class RemoteButtonKeyStrings {
   static const String backward = "bwd";
   static const String play = "play";
   static const String forward = "fwd";
+
+  static const String placeholder = "";
 }
 
 
@@ -80,4 +82,6 @@ class RemoteButtonIconWidget {
   static const Widget backward = Icon(Icons.fast_rewind);
   static const Widget play = Icon(Icons.play_arrow);
   static const Widget forward = Icon(Icons.fast_forward);
+
+  static const Widget placeholder = Text("");
 }
