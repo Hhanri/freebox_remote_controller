@@ -9,16 +9,15 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: SingleChildScrollView(
-          child: SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                PowerRowWidget(),
-                NumPadWidget(),
-                DirectionalButtonsWidget(),
-              ],
-            ),
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              PowerRowWidget(),
+              NumPadWidget(),
+              DirectionalButtonsWidget(),
+            ],
           ),
         ),
       )

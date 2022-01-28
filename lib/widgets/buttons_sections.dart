@@ -24,21 +24,23 @@ class NumPadWidget extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (BuildContext context, int index) {
-        RemoteButton _currentButton = numPad[index];
-        if (numPad[index] != RemoteButtonsWidgets.placeholder) {
-          return RemoteButtonWidget(buttonKey: _currentButton.buttonKey, icon: _currentButton.buttonWidget ,color: _currentButton.backgroundColor ?? Colors.transparent);
-        }
-        return Container();
-      },
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount:3,
-        childAspectRatio: 4
+    return Center(
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (BuildContext context, int index) {
+          RemoteButton _currentButton = numPad[index];
+          if (numPad[index] != RemoteButtonsWidgets.placeholder) {
+            return RemoteButtonWidget(buttonKey: _currentButton.buttonKey, icon: _currentButton.buttonWidget ,color: _currentButton.backgroundColor ?? Colors.transparent);
+          }
+          return Container();
+        },
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount:3,
+          childAspectRatio: 4
+        ),
+        itemCount: numPad.length,
       ),
-      itemCount: numPad.length,
     );
   }
 }
@@ -53,21 +55,23 @@ class PowerRowWidget extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (BuildContext context, int index) {
-        RemoteButton _currentButton = rowButtons[index];
-        if (rowButtons[index] != RemoteButtonsWidgets.placeholder) {
-          return RemoteButtonWidget(buttonKey: _currentButton.buttonKey, icon: _currentButton.buttonWidget ,color: _currentButton.backgroundColor ?? Colors.transparent);
-        }
-        return Container();
-      },
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount:3,
-        childAspectRatio: 4
+    return Center(
+      child: GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (BuildContext context, int index) {
+          RemoteButton _currentButton = rowButtons[index];
+          if (rowButtons[index] != RemoteButtonsWidgets.placeholder) {
+            return RemoteButtonWidget(buttonKey: _currentButton.buttonKey, icon: _currentButton.buttonWidget ,color: _currentButton.backgroundColor ?? Colors.transparent);
+          }
+          return Container();
+        },
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount:3,
+          childAspectRatio: 4
+        ),
+        itemCount: rowButtons.length,
       ),
-      itemCount: rowButtons.length,
     );
   }
 }
