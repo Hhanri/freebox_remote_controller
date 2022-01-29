@@ -9,24 +9,28 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              PowerRowWidget(),
-              NumPadWidget(),
-              DirectionalButtonsWidget(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  VolColumnWidget(),
-                  MidColumnWidget(),
-                  ProgColumnWidget()
-                ],
+              Expanded(child: PowerRowWidget(), flex: 1,),
+              Expanded(child: NumPadWidget(), flex: 4,),
+              Expanded(child: DirectionalButtonsWidget(), flex: 3,),
+              const Expanded(child: FreeButtonWidget(), flex: 1,),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    VolColumnWidget(),
+                    MidColumnWidget(),
+                    ProgColumnWidget()
+                  ],
+                ),
+                flex: 3,
               ),
-              PlayRowWidget()
+              Expanded(child: PlayRowWidget(), flex: 1,)
             ],
           ),
         )

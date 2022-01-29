@@ -75,7 +75,7 @@ class RemoteButtonIconWidget {
   static const Widget left = Icon(Icons.arrow_left);
   static const Widget right = Icon(Icons.arrow_right);
 
-  static const Widget home = Text("FREE");
+  static const Widget home = Text("FREE", style: TextStyle(color: Colors.red));
   static const Widget mute = Icon(Icons.volume_off);
   static const Widget rec = Icon(Icons.fiber_manual_record, color: Colors.red);
 
