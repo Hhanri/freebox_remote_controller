@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freebox_remote_controller/models/remote_button_class.dart';
 import 'package:freebox_remote_controller/resources/remote_button_data.dart';
+import 'package:freebox_remote_controller/utils/app_config.dart';
 import 'package:freebox_remote_controller/widgets/remote_button_widget.dart';
 import 'package:freebox_remote_controller/widgets/settings%20button.dart';
 
@@ -123,7 +124,7 @@ class VolColumnWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height*2/12,
+      height: AppConfig.trueScreenHeight(context)*2/12,
       child: Center(
         child: GridView.builder(
           scrollDirection: Axis.horizontal,
@@ -161,7 +162,7 @@ class MidColumnWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height*2/12,
+      height: AppConfig.trueScreenHeight(context)*2/12,
       child: Center(
         child: GridView.builder(
           scrollDirection: Axis.horizontal,
@@ -197,7 +198,7 @@ class ProgColumnWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height*2/12,
+      height: AppConfig.trueScreenHeight(context)*2/12,
       child: Center(
         child: GridView.builder(
           scrollDirection: Axis.horizontal,
