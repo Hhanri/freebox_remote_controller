@@ -6,11 +6,21 @@ class SettingsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        NavigationUtils.showSettingsDialog(context: context);
-      },
-      icon: const Icon(Icons.settings)
+    return Material(
+      child: InkWell(
+        onTap: () {
+          NavigationUtils.showSettingsDialog(context: context);
+        },
+        child: Ink(
+          child: const FittedBox(
+            child: Center(
+              child: Icon(
+                Icons.settings
+              ),
+            )
+          ),
+        )
+      ),
     );
   }
 }
