@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:freebox_remote_controller/resources/strings.dart';
 import 'package:freebox_remote_controller/utils/format_utils.dart';
 
@@ -76,6 +77,11 @@ class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      inputFormatters: <TextInputFormatter>[
+        FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+      ],
+      maxLength: 8,
+      keyboardType: TextInputType.number,
       focusNode: FocusNode(),
       textAlignVertical: TextAlignVertical.center,
       autocorrect: false,
