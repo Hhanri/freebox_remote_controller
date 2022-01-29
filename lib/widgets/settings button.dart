@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:freebox_remote_controller/utils/navigation_utils.dart';
 

@@ -7,7 +7,7 @@ class APIService {
   static void buttonFunction({required String buttonKey, required bool longPress, required BuildContext context}) async {
     int code = await RemoteCodeControllerPreferences.loadCode();
     if (code != 00000000) {
-      await get(Uri.parse('http://hd1.freebox.fr/pub/remote_control?code=${code}key=$buttonKey&long=$longPress'));
+      await get(Uri.parse('http://hd1.freebox.fr/pub/remote_control?code=$code&key=$buttonKey&long=$longPress'));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBarWidgets.noCodeRegisteredSnackBar);
     }
@@ -15,6 +15,16 @@ class APIService {
 }
 
 class SnackBarWidgets {
-  static const SnackBar noCodeRegisteredSnackBar = SnackBar(content: Text(SystemStrings.noCodeRegisteredSnackBar));
-  static const SnackBar codeRegisteredSuccessfullySnackBar = SnackBar(content: Text(SystemStrings.codeRegisteredSuccessfullySnackBar));
+  static const SnackBar noCodeRegisteredSnackBar = SnackBar(
+    content: Text(
+        SystemStrings.noCodeRegisteredSnackBar
+    ),
+    duration: Duration(milliseconds: 7000),
+  );
+  static const SnackBar codeRegisteredSuccessfullySnackBar = SnackBar(
+    content: Text(
+      SystemStrings.codeRegisteredSuccessfullySnackBar
+    ),
+    duration: Duration(milliseconds: 700),
+  );
 }
