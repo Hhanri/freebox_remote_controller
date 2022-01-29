@@ -14,7 +14,7 @@ class RemoteCodeControllerPreferences {
   }
 
   static Future<int> loadCode() async {
-    return preferences.getInt(SystemStrings.codePreferencesKey) ?? 12121212;
+    return preferences.getInt(SystemStrings.codePreferencesKey) ?? 00000000;
   }
 
 }

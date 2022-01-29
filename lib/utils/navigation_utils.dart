@@ -72,7 +72,7 @@ class ValidateButtonWidget extends StatelessWidget {
 
 class TextFieldWidget extends StatelessWidget {
   final ValueChanged<String> valueChange;
-  TextFieldWidget({
+  const TextFieldWidget({
     Key? key,
     required this.valueChange,
   }) : super(key: key);
