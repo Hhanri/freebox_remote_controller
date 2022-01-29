@@ -13,8 +13,23 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
   const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() async {
+    super.initState();
+    if (await RemoteCodeControllerPreferences.loadCode() == 00000000) {
+      RemoteCodeControllerPreferences.saveCode(00000000);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

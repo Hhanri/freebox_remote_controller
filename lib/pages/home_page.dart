@@ -4,7 +4,6 @@ import 'package:freebox_remote_controller/widgets/buttons_sections.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(

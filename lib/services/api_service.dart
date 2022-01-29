@@ -19,7 +19,7 @@ class SnackBarWidgets {
     content: Text(
         SystemStrings.noCodeRegisteredSnackBar
     ),
-    duration: Duration(milliseconds: 7000),
+    duration: Duration(milliseconds: 700),
   );
   static const SnackBar codeRegisteredSuccessfullySnackBar = SnackBar(
     content: Text(
