@@ -18,10 +18,10 @@ class RemoteButtonWidget extends StatelessWidget {
       color: color,
       child: InkWell(
         onTap: () {
-          APIService.buttonFunction(buttonKey, false);
+          APIService.buttonFunction(buttonKey: buttonKey, context: context,longPress: false);
         },
         onLongPress: () {
-          APIService.buttonFunction(buttonKey, true);
+          APIService.buttonFunction(buttonKey: buttonKey, context: context,longPress: true);
         },
         child: Ink(
           child: FittedBox(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:freebox_remote_controller/resources/strings.dart';
+import 'package:freebox_remote_controller/services/api_service.dart';
+import 'package:freebox_remote_controller/services/remote_controller_code_service.dart';
 import 'package:freebox_remote_controller/utils/format_utils.dart';
 
 class NavigationUtils {
@@ -33,7 +35,7 @@ class NavigationUtils {
             ValidateButtonWidget(
               formKey: _formKey,
               assignCode: () {
-                print(_code);
+                RemoteCodeControllerPreferences.saveCode(int.parse(_code));
               },
             ),
           ],
@@ -61,6 +63,7 @@ class ValidateButtonWidget extends StatelessWidget {
         if (formKey.currentState!.validate()) {
           assignCode();
           Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(SnackBarWidgets.codeRegisteredSuccessfullySnackBar);
         }
       },
     );
@@ -69,7 +72,7 @@ class ValidateButtonWidget extends StatelessWidget {
 
 class TextFieldWidget extends StatelessWidget {
   final ValueChanged<String> valueChange;
-  const TextFieldWidget({
+  TextFieldWidget({
     Key? key,
     required this.valueChange,
   }) : super(key: key);
