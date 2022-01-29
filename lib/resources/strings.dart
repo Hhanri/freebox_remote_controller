@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+class SystemStrings {
+  static const String settings = "Settings";
+  static const String validate = "Validate";
+  static const String remoteControllerCode = "Remote Controller Code";
+  static const String notValidCode = "8 digits code only";
+}
+
 class RemoteButtonKeyStrings {
 
   static const String red = "red";

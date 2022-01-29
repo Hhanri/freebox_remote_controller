@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:freebox_remote_controller/models/remote_button_class.dart';
 import 'package:freebox_remote_controller/resources/remote_button_data.dart';
 import 'package:freebox_remote_controller/widgets/remote_button_widget.dart';
+import 'package:freebox_remote_controller/widgets/settings%20button.dart';
 
 class NumPadWidget extends StatelessWidget {
   NumPadWidget({
@@ -64,7 +65,7 @@ class PowerRowWidget extends StatelessWidget {
           if (rowButtons[index] != RemoteButtonsWidgets.placeholder) {
             return RemoteButtonWidget(buttonKey: _currentButton.buttonKey, icon: _currentButton.buttonWidget ,color: _currentButton.backgroundColor ?? Colors.transparent);
           }
-          return Container();
+          return const SettingsButton();
         },
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount:3,
@@ -101,8 +102,8 @@ class DirectionalButtonsWidget extends StatelessWidget {
           return RemoteButtonWidget(buttonKey: _currentButton.buttonKey, icon: _currentButton.buttonWidget ,color: _currentButton.backgroundColor ?? Colors.transparent);
         },
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount:3,
-            childAspectRatio: 30/11
+          crossAxisCount: 3,
+          childAspectRatio: 30/11,
         ),
         itemCount: directionalButtons.length,
       ),
