@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class RemoteCodeControllerPreferences {
 
+  static const int defaultCode = 0;
+  static const int nullCode = 12345678;
   static late SharedPreferences preferences;
 
   static Future init() async {
@@ -14,7 +16,7 @@ class RemoteCodeControllerPreferences {
   }
 
   static Future<int> loadCode() async {
-    return preferences.getInt(SystemStrings.codePreferencesKey) ?? 00000000;
+    return preferences.getInt(SystemStrings.codePreferencesKey) ?? 12345678;
   }
 
 }

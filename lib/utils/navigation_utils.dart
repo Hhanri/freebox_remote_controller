@@ -79,24 +79,36 @@ class TextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      inputFormatters: <TextInputFormatter>[
-        FilteringTextInputFormatter.allow(RegExp("[0-9]")),
-      ],
-      maxLength: 8,
-      keyboardType: TextInputType.number,
-      focusNode: FocusNode(),
-      textAlignVertical: TextAlignVertical.center,
-      autocorrect: false,
-      onChanged: (String? value) {
-        valueChange(value ?? "");
-      },
-      validator: (String? value) {
-        if (!value!.isEightDigits()) {
-          return SystemStrings.notValidCode;
+    return FutureBuilder<int>(
+      future: RemoteCodeControllerPreferences.loadCode(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.hasData) {
+          if (snapshot.data != null) {
+            int currentCode = snapshot.data;
+            return TextFormField(
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+              ],
+              maxLength: 8,
+              initialValue: currentCode.toString(),
+              keyboardType: TextInputType.number,
+              focusNode: FocusNode(),
+              textAlignVertical: TextAlignVertical.center,
+              autocorrect: false,
+              onChanged: (String? value) {
+                valueChange(value ?? "");
+              },
+              validator: (String? value) {
+                if (!value!.isEightDigits()) {
+                  return SystemStrings.notValidCode;
+                }
+                return null;
+              },
+            );
+          }
         }
-        return null;
-      },
+        return const Center(child: CircularProgressIndicator());
+      }
     );
   }
 }

@@ -4,6 +4,9 @@ import 'package:freebox_remote_controller/pages/home_page.dart';
 import 'package:freebox_remote_controller/resources/strings.dart';
 import 'package:freebox_remote_controller/services/remote_controller_code_service.dart';
 
+import 'services/api_service.dart';
+import 'services/remote_controller_code_service.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
@@ -13,23 +16,9 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
 
   const MyApp({Key? key}) : super(key: key);
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-
-  @override
-  void initState() async {
-    super.initState();
-    if (await RemoteCodeControllerPreferences.loadCode() == 00000000) {
-      RemoteCodeControllerPreferences.saveCode(00000000);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +29,18 @@ class _MyAppState extends State<MyApp> {
         brightness: Brightness.dark,
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: FutureBuilder<int>(
+        future: RemoteCodeControllerPreferences.loadCode(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data == RemoteCodeControllerPreferences.defaultCode) {
+              RemoteCodeControllerPreferences.saveCode(RemoteCodeControllerPreferences.nullCode);
+            }
+            return const HomeScreen();
+          }
+          return const Center(child: CircularProgressIndicator());
+        }
+      ),
     );
   }
 }
