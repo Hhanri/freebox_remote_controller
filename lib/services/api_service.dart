@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 class APIService {
   static void buttonFunction({required String buttonKey, required bool longPress, required BuildContext context}) async {
     int code = await RemoteCodeControllerPreferences.loadCode();
-    if (code != RemoteCodeControllerPreferences.defaultCode) {
+    if (code != RemoteCodeControllerPreferences.nullCode) {
       await get(Uri.parse('http://hd1.freebox.fr/pub/remote_control?code=$code&key=$buttonKey&long=$longPress'));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBarWidgets.noCodeRegisteredSnackBar);
