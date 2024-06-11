@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/widgets/freebox_controller_box.dart';
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_input.dart';
 
+typedef FreeboxInputCallback = void Function(FreeboxInput input);
+
 abstract base class FreeboxButtonWidget extends FreeboxControllerBox {
   final FreeboxInput input;
   final Color backgroundColor;
 
-  final void Function(FreeboxInput) onTap;
-  final void Function(FreeboxInput) onLongPress;
+  final FreeboxInputCallback onTap;
+  final FreeboxInputCallback onLongPress;
 
   Widget childBuilder(BuildContext context);
 
@@ -32,6 +34,38 @@ abstract base class FreeboxButtonWidget extends FreeboxControllerBox {
           ),
         ),
       ),
+    );
+  }
+
+  factory FreeboxButtonWidget.text({
+    required FreeboxInput input,
+    required FreeboxInputCallback onTap,
+    required FreeboxInputCallback onLongPress,
+    TextStyle? textStyle,
+  }) {
+    return FreeboxTextButton(
+      input: input,
+      onTap: onTap,
+      onLongPress: onLongPress,
+      textStyle: textStyle,
+    );
+  }
+
+  factory FreeboxButtonWidget.icon({
+    required FreeboxInput input,
+    required IconData iconData,
+    required FreeboxInputCallback onTap,
+    required FreeboxInputCallback onLongPress,
+    Color color = Colors.white,
+    Color backgroundColor = Colors.transparent,
+  }) {
+    return FreeboxIconButton(
+      input: input,
+      iconData: iconData,
+      onTap: onTap,
+      onLongPress: onLongPress,
+      color: color,
+      backgroundColor: backgroundColor,
     );
   }
 }
