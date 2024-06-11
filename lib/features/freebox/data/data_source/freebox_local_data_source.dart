@@ -1,5 +1,7 @@
-abstract interface class FreeboxLocalDataSourceInterface {
-  Future<String?> getCode();
+import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_code.dart';
 
-  Future<void> saveCode(String code);
+abstract interface class FreeboxLocalDataSourceInterface {
+  Future<FreeboxCode?> getCode();
+
+  Future<void> saveCode(FreeboxCode code);
 }
