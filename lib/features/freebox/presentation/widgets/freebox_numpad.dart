@@ -53,6 +53,11 @@ class FreeboxNumpad extends StatelessWidget {
       onTap: onTap,
       onLongPress: onLongPress,
     ),
+    FreeboxButtonWidget.text(
+      input: FreeboxInputs.n9,
+      onTap: onTap,
+      onLongPress: onLongPress,
+    ),
     const FreeboxControllerPlaceholderBox(),
     FreeboxButtonWidget.text(
       input: FreeboxInputs.n0,
