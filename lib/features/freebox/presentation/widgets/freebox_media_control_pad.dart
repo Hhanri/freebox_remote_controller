@@ -31,9 +31,9 @@ class FreeboxMediaControlPad extends StatelessWidget {
       onTap: onTap,
       onLongPress: onLongPress,
     ),
-    FreeboxControllerTextBox(text: FreeboxInputs.volPlaceholder.value),
+    const FreeboxControllerTextBox(text: "VOL"),
     const FreeboxControllerPlaceholderBox(),
-    FreeboxControllerTextBox(text: FreeboxInputs.progPlaceholder.value),
+    const FreeboxControllerTextBox(text: "PROG"),
     FreeboxButtonWidget.icon(
       input: FreeboxInputs.volDown,
       iconData: Icons.remove,
