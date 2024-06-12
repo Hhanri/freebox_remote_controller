@@ -1,5 +1,4 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:fpdart/src/task_either.dart';
 import 'package:freebox_remote_controller/core/result/result.dart';
 import 'package:freebox_remote_controller/features/freebox/data/data_source/freebox_api.dart';
 import 'package:freebox_remote_controller/features/freebox/data/data_source/freebox_local_data_source.dart';

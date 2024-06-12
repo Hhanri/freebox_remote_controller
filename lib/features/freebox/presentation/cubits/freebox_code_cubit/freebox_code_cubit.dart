@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freebox_remote_controller/features/freebox/domain/use_cases/freebox_get_code_use_case.dart';
 import 'package:freebox_remote_controller/features/freebox/domain/use_cases/freebox_save_code_use_case.dart';
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_code.dart';
