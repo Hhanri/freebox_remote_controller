@@ -1,3 +1,4 @@
+import 'package:freebox_remote_controller/core/result/result.dart';
 import 'package:freebox_remote_controller/features/freebox/data/data_source/freebox_api.dart';
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_code.dart';
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_input.dart';
@@ -9,15 +10,17 @@ final class FreeboxHttpApi implements FreeboxApi {
   FreeboxHttpApi(this.client);
 
   @override
-  Future<void> sendCommand({
+  Future<Empty> sendCommand({
     required FreeboxCode code,
     required FreeboxInput input,
     bool longPress = false,
-  }) {
+  }) async {
     final query =
         'http://hd1.freebox.fr/pub/remote_control?code=${code.value}&key=${input.value}&long=$longPress';
-    return client.get(
+    final res = await client.get(
       Uri.parse(query),
     );
+    if (res.statusCode != 200) throw res.body;
+    return const Empty();
   }
 }
