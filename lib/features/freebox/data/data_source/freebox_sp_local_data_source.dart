@@ -1,3 +1,4 @@
+import 'package:freebox_remote_controller/core/result/result.dart';
 import 'package:freebox_remote_controller/features/freebox/data/data_source/freebox_local_data_source.dart';
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_code.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,7 +19,8 @@ final class FreeboxSPLocalDataSource
   }
 
   @override
-  Future<void> saveCode(FreeboxCode code) {
-    return sp.setString(codeKey, code.value);
+  Future<Empty> saveCode(FreeboxCode code) async {
+    await sp.setString(codeKey, code.value);
+    return const Empty();
   }
 }
