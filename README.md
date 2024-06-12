@@ -22,6 +22,11 @@ You can find your code in your `Freebox TV` > `Menu` > `Settings` > `Freebox Inf
 4. Voilà ! You can now use the application as your Freebox remote controller !
 
 # Install on your real device
+## Quick install for android
+Check out the **release** section [here](https://github.com/Hhanri/freebox_remote_controller/releases/).
+Select the version you are interested in and download the apk.
+
+## Custom build
 Use the `flutter build` command to create the final output for your device.
 
 examples:
