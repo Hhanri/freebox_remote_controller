@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:freebox_remote_controller/pages/home_page.dart';
+import 'package:freebox_remote_controller/features/freebox/presentation/pages/freebox_remote_controller_page_wrapper.dart';
 import 'package:freebox_remote_controller/resources/strings.dart';
-import 'package:freebox_remote_controller/services/remote_controller_code_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +11,6 @@ void main() async {
       DeviceOrientation.portraitDown,
     ],
   );
-  await RemoteCodeControllerPreferences.init();
   runApp(const MyApp());
 }
 
@@ -28,20 +26,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: Colors.blue,
       ),
-      home: FutureBuilder<int>(
-        future: RemoteCodeControllerPreferences.loadCode(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
-            if (snapshot.data == RemoteCodeControllerPreferences.defaultCode) {
-              RemoteCodeControllerPreferences.saveCode(
-                RemoteCodeControllerPreferences.nullCode,
-              );
-            }
-            return const HomeScreen();
-          }
-          return const Center(child: CircularProgressIndicator());
-        },
-      ),
+      home: const FreeboxRemoteControllerPageWrapper(),
     );
   }
 }
