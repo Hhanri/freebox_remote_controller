@@ -42,6 +42,7 @@ class FreeboxMediaControlPad extends StatelessWidget {
     ),
     FreeboxButtonWidget.icon(
       input: FreeboxInputs.rec,
+      color: Colors.red,
       iconData: Icons.fiber_manual_record,
       onTap: onTap,
       onLongPress: onLongPress,
