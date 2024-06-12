@@ -1,16 +1,30 @@
-# freebox_remote_controller
+# Introduction
+**freebox_remote_controller** is a remote controller application for Freebox TV and works over the network.
 
-Freebox remote controller application
+# Getting Started
+1. clone the project
+`git clone https://github.com/Hhanri/freebox_remote_controller`
+2. install pub packages
+`flutter pub get`
+3. run the app
+`flutter run`
 
-## Getting Started
+# Configuration
 
-This project is a starting point for a Flutter application.
+1. To use the application you will need to provide your `network remote controller code`.
 
-A few resources to get you started if this is your first Flutter project:
+You can find your code in your `Freebox TV` > `Menu` > `Settings` > `Freebox Information` > `network remote controller code`.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. Make sure your phone is connected to the local Freebox network
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Inside the application, click on the settings button and write down your `network remote controller code` and then press `validate`.
+
+4. Voilà ! You can now use the application as your Freebox remote controller !
+
+# Install on your real device
+Use the `flutter build` command to create the final output for your device.
+
+examples:
+- android: `flutter build apk`
+- iOS `flutter build ios`
+- macOS `flutter build macos`
