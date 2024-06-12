@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:freebox_remote_controller/core/resources/strings.dart';
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_code.dart';
-import 'package:freebox_remote_controller/resources/strings.dart';
 
 Future<void> showFreeboxCodeModal({
   required BuildContext context,

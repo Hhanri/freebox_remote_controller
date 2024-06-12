@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:freebox_remote_controller/config/setup_container.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/pages/freebox_remote_controller_page_wrapper.dart';
-import 'package:freebox_remote_controller/resources/strings.dart';
+
+import 'core/resources/strings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

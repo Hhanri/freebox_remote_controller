@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freebox_remote_controller/core/utils/app_config.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/cubits/freebox_controller_cubit/freebox_controller_cubit.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/widgets/freebox_arrow_pad.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/widgets/freebox_home_row.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/widgets/freebox_media_control_pad.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/widgets/freebox_numpad.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/widgets/freebox_power_row.dart';
-import 'package:freebox_remote_controller/utils/app_config.dart';
 
 class FreeboxRemoteControllerPage extends StatelessWidget {
   const FreeboxRemoteControllerPage({super.key});
