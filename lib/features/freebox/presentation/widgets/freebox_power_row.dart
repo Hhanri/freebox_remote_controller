@@ -14,6 +14,7 @@ class FreeboxPowerRow extends StatelessWidget {
 
   late final List<FreeboxControllerBox> controls = [
     FreeboxButtonWidget.text(
+      text: "AV",
       input: FreeboxInputs.tv,
       onTap: onTap,
       onLongPress: onLongPress,

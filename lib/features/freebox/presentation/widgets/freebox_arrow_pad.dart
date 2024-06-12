@@ -40,6 +40,7 @@ class FreeboxArrowPad extends StatelessWidget {
       onLongPress: onLongPress,
     ),
     FreeboxButtonWidget.text(
+      text: "OK",
       input: FreeboxInputs.ok,
       onTap: onTap,
       onLongPress: onLongPress,

@@ -41,9 +41,11 @@ abstract base class FreeboxButtonWidget extends FreeboxControllerBox {
     required FreeboxInput input,
     required FreeboxInputCallback onTap,
     required FreeboxInputCallback onLongPress,
+    String? text,
     TextStyle? textStyle,
   }) {
     return FreeboxTextButton(
+      text: text,
       input: input,
       onTap: onTap,
       onLongPress: onLongPress,
@@ -71,9 +73,11 @@ abstract base class FreeboxButtonWidget extends FreeboxControllerBox {
 }
 
 final class FreeboxTextButton extends FreeboxButtonWidget {
+  final String? text;
   final TextStyle? textStyle;
   const FreeboxTextButton({
     super.key,
+    this.text,
     this.textStyle,
     required super.input,
     required super.onTap,
@@ -83,7 +87,7 @@ final class FreeboxTextButton extends FreeboxButtonWidget {
   @override
   Widget childBuilder(BuildContext context) {
     return Text(
-      input.value,
+      text ?? input.value,
       style: textStyle,
     );
   }

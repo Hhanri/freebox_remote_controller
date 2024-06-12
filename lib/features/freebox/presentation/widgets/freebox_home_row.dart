@@ -15,6 +15,7 @@ class FreeboxHomeRow extends StatelessWidget {
   late final List<FreeboxControllerBox> controls = [
     const FreeboxControllerPlaceholderBox(),
     FreeboxButtonWidget.text(
+      text: "FREE",
       input: FreeboxInputs.home,
       textStyle: const TextStyle(color: Colors.red),
       onTap: onTap,
