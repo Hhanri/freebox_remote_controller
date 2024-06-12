@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/widgets/freebox_controller_box.dart';
-import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_input.dart';
-
-typedef FreeboxInputCallback = void Function(FreeboxInput input);
 
 abstract base class FreeboxButtonWidget extends FreeboxControllerBox {
-  final FreeboxInput input;
   final Color backgroundColor;
-
-  final FreeboxInputCallback onTap;
-  final FreeboxInputCallback onLongPress;
+  final void Function()? onTap;
+  final void Function()? onLongPress;
 
   Widget childBuilder(BuildContext context);
 
   const FreeboxButtonWidget({
     super.key,
-    required this.input,
     this.backgroundColor = Colors.transparent,
-    required this.onTap,
-    required this.onLongPress,
+    this.onTap,
+    this.onLongPress,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onTap(input),
-      onLongPress: () => onLongPress(input),
+      onTap: onTap,
+      onLongPress: onLongPress,
       child: ColoredBox(
         color: backgroundColor,
         child: FittedBox(
@@ -37,58 +31,19 @@ abstract base class FreeboxButtonWidget extends FreeboxControllerBox {
     );
   }
 
-  factory FreeboxButtonWidget.text({
-    required FreeboxInput input,
-    required FreeboxInputCallback onTap,
-    required FreeboxInputCallback onLongPress,
-    String? text,
-    TextStyle? textStyle,
-  }) {
-    return FreeboxTextButton(
-      text: text,
-      input: input,
-      onTap: onTap,
-      onLongPress: onLongPress,
-      textStyle: textStyle,
-    );
-  }
-
   factory FreeboxButtonWidget.icon({
-    required FreeboxInput input,
     required IconData iconData,
-    required FreeboxInputCallback onTap,
-    required FreeboxInputCallback onLongPress,
+    void Function()? onTap,
+    void Function()? onLongPress,
     Color color = Colors.white,
     Color backgroundColor = Colors.transparent,
   }) {
     return FreeboxIconButton(
-      input: input,
       iconData: iconData,
       onTap: onTap,
       onLongPress: onLongPress,
       color: color,
       backgroundColor: backgroundColor,
-    );
-  }
-}
-
-final class FreeboxTextButton extends FreeboxButtonWidget {
-  final String? text;
-  final TextStyle? textStyle;
-  const FreeboxTextButton({
-    super.key,
-    this.text,
-    this.textStyle,
-    required super.input,
-    required super.onTap,
-    required super.onLongPress,
-  });
-
-  @override
-  Widget childBuilder(BuildContext context) {
-    return Text(
-      text ?? input.value,
-      style: textStyle,
     );
   }
 }
@@ -99,12 +54,11 @@ final class FreeboxIconButton extends FreeboxButtonWidget {
 
   const FreeboxIconButton({
     super.key,
-    required super.input,
-    required super.onTap,
-    required super.onLongPress,
-    required this.iconData,
-    this.color = Colors.white,
     super.backgroundColor,
+    super.onTap,
+    super.onLongPress,
+    required this.iconData,
+    required this.color,
   });
 
   @override
