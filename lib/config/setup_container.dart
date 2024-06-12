@@ -48,6 +48,6 @@ Future<void> setupContainer() async {
     () => FreeboxCodeCubit(
       saveCodeUseCase: sl.get<FreeboxSaveCodeUseCase>(),
       getCodeUseCase: sl.get<FreeboxGetCodeUseCase>(),
-    ),
+    )..init(),
   );
 }

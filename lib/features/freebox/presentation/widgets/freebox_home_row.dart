@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:freebox_remote_controller/features/freebox/presentation/widgets/freebox_button_widget.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/widgets/freebox_controller_box.dart';
+import 'package:freebox_remote_controller/features/freebox/presentation/widgets/freebox_input_button_widget.dart';
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_input.dart';
 
 class FreeboxHomeRow extends StatelessWidget {
@@ -14,7 +14,7 @@ class FreeboxHomeRow extends StatelessWidget {
 
   late final List<FreeboxControllerBox> controls = [
     const FreeboxControllerPlaceholderBox(),
-    FreeboxButtonWidget.text(
+    FreeboxInputButtonWidget.text(
       text: "FREE",
       input: FreeboxInputs.home,
       textStyle: const TextStyle(color: Colors.red),
