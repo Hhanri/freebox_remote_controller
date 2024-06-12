@@ -67,7 +67,7 @@ class _FreeboxSettingsFormState extends State<FreeboxSettingsForm> {
           maxLength: 8,
           maxLengthEnforcement: MaxLengthEnforcement.enforced,
           validator: (value) {
-            final hasMatch = RegExp(r'^\d{8}$').hasMatch(value ?? "");
+            final hasMatch = value?.isValidFreeboxCode ?? false;
             if (!hasMatch) return "Invalid Freebox Code";
             return null;
           },
