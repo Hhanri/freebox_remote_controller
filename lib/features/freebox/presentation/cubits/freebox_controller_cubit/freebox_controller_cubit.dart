@@ -15,6 +15,7 @@ class FreeboxControllerCubit extends Cubit<FreeboxControllerState> {
     required FreeboxInput input,
     required bool longTap,
   }) async {
+    emit(FreeboxControllerInitial());
     final res = await sendCommandUseCase
         .call(
           input: input,
