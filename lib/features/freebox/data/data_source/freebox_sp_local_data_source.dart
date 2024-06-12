@@ -14,7 +14,7 @@ final class FreeboxSPLocalDataSource
   @override
   Future<FreeboxCode?> getCode() async {
     final val = sp.getString(codeKey);
-    if (val == null) return null;
+    if (val == null || val == "") return null;
     return FreeboxCode(val);
   }
 
