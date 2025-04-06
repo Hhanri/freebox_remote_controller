@@ -8,7 +8,7 @@ interface class FreeboxGetCodeUseCase {
 
   FreeboxGetCodeUseCase(this.repo);
 
-  TaskEither<Failure, Success<FreeboxCode?>> call() {
+  TaskEither<Failure, Option<FreeboxCode>> call() {
     return repo.getCode();
   }
 }

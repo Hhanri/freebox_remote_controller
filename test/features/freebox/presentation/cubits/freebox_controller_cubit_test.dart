@@ -1,8 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:freebox_remote_controller/core/result/empty.dart';
 import 'package:freebox_remote_controller/core/result/failure.dart';
-import 'package:freebox_remote_controller/core/result/success.dart';
 import 'package:freebox_remote_controller/features/freebox/domain/use_cases/freebox_send_command_use_case.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/cubits/freebox_controller_cubit/freebox_controller_cubit.dart';
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_input.dart';
@@ -61,14 +59,12 @@ void main() {
             longTap: false,
           ),
         ).thenAnswer(
-          (_) => TaskEither.right(
-            const Success(value: Empty()),
-          ),
+          (_) => TaskEither.right(unit),
         );
         await cubit.onTap(input);
 
         expect(
-          cubit.stream,
+          cubit.state,
           FreeboxControllerInitial(),
         );
       });
@@ -113,14 +109,12 @@ void main() {
             longTap: true,
           ),
         ).thenAnswer(
-          (_) => TaskEither.right(
-            const Success(value: Empty()),
-          ),
+          (_) => TaskEither.right(unit),
         );
         await cubit.onLongPress(input);
 
         expect(
-          cubit.stream,
+          cubit.state,
           FreeboxControllerInitial(),
         );
       });

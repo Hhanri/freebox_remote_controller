@@ -18,7 +18,7 @@ class FreeboxCodeCubit extends Cubit<FreeboxCodeState> {
     final res = await getCodeUseCase.call().run();
     res.fold(
       (failure) => emit(FreeboxCodeError(message: failure.message)),
-      (success) => emit(FreeboxCodeInitial(code: success.value)),
+      (r) => emit(FreeboxCodeInitial(code: r.toNullable())),
     );
   }
 

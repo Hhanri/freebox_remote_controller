@@ -8,7 +8,7 @@ interface class FreeboxSaveCodeUseCase {
 
   FreeboxSaveCodeUseCase(this.repo);
 
-  TaskEither<Failure, EmptySuccess> call(FreeboxCode code) {
+  TaskEither<Failure, FreeboxCode> call(FreeboxCode code) {
     return repo.saveCode(code);
   }
 }

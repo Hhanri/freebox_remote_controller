@@ -26,9 +26,7 @@ void main() {
       test("failure", () async {
         when(
           localDataSource.getCode,
-        ).thenThrow(
-          "error",
-        );
+        ).thenAnswer((_) => TaskEither.left(const Failure(message: "error")));
 
         final res = await repo.getCode().run();
         expect(
@@ -58,7 +56,7 @@ void main() {
       test("failure", () async {
         when(
           () => localDataSource.saveCode(code),
-        ).thenThrow("error");
+        ).thenAnswer((_) => TaskEither.left(const Failure(message: "error")));
 
         final res = await repo.saveCode(code).run();
         expect(

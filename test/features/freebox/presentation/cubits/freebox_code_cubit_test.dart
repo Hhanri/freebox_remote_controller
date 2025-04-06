@@ -55,9 +55,7 @@ void main() {
         when(
           getCodeUseCase.call,
         ).thenAnswer(
-          (_) => TaskEither.right(
-            const Success(value: null),
-          ),
+          (_) => TaskEither.right(const Option.none()),
         );
 
         await cubit.init();
@@ -71,7 +69,7 @@ void main() {
           getCodeUseCase.call,
         ).thenAnswer(
           (_) => TaskEither.right(
-            const Success(value: FreeboxCode("12345678")),
+            const Option.of(FreeboxCode("12345678")),
           ),
         );
 
@@ -109,7 +107,7 @@ void main() {
         when(
           () => saveCodeUseCase.call(newCode),
         ).thenAnswer(
-          (_) => TaskEither.right(const Success(value: Empty())),
+          (_) => TaskEither.right(newCode),
         );
 
         await cubit.saveCode(newCode);

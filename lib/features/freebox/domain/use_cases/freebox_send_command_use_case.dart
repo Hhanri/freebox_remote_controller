@@ -8,13 +8,19 @@ interface class FreeboxSendCommandUseCase {
 
   FreeboxSendCommandUseCase(this.repo);
 
-  TaskEither<Failure, EmptySuccess> call({
+  TaskEither<Failure, Unit> call({
     required FreeboxInput input,
     bool longTap = false,
   }) {
-    return repo.sendCommand(
-      input: input,
-      longTap: longTap,
-    );
+    return repo.getCode().flatMap(
+          (r) => r.fold(
+            () => TaskEither.left(const Failure(message: "missing code")),
+            (code) => repo.sendCommand(
+              code: code,
+              input: input,
+              longTap: longTap,
+            ),
+          ),
+        );
   }
 }
