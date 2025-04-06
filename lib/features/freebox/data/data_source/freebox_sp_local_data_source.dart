@@ -1,5 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:freebox_remote_controller/core/extensions/fp_extensions.dart';
+import 'package:freebox_remote_controller/core/extensions/string_extensions.dart';
 import 'package:freebox_remote_controller/core/result/result.dart';
 import 'package:freebox_remote_controller/features/freebox/data/data_source/freebox_local_data_source.dart';
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_code.dart';
@@ -18,7 +19,7 @@ final class FreeboxSPLocalDataSource
     return TaskEither.tryCatch(
       () async {
         return Option.fromNullable(
-          sp.getString(codeKey)?.map((s) => FreeboxCode(s)),
+          sp.getString(codeKey)?.nullIfEmpty()?.map((s) => FreeboxCode(s)),
         );
       },
       (e, _) => Failure(message: e.toString()),

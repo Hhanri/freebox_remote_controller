@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:freebox_remote_controller/core/result/empty.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:freebox_remote_controller/features/freebox/data/data_source/freebox_sp_local_data_source.dart';
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_code.dart';
 
@@ -14,16 +14,16 @@ void main() async {
       test("null value should return null", () async {
         prefs.remove(FreeboxSPLocalDataSource.codeKey);
         expect(
-          await dataSource.getCode(),
-          null,
+          await dataSource.getCode().run(),
+          const Right(Option.none()),
         );
       });
 
       test("empty string should return null", () async {
         prefs.setString(FreeboxSPLocalDataSource.codeKey, "");
         expect(
-          await dataSource.getCode(),
-          null,
+          await dataSource.getCode().run(),
+          const Right(Option.none()),
         );
       });
 
@@ -31,8 +31,8 @@ void main() async {
         const code = FreeboxCode("12345678");
         prefs.setString(FreeboxSPLocalDataSource.codeKey, code.value);
         expect(
-          await dataSource.getCode(),
-          code,
+          await dataSource.getCode().run(),
+          const Right(Option.of(code)),
         );
       });
     });
@@ -40,8 +40,8 @@ void main() async {
     test("save code", () async {
       const code = FreeboxCode("12345678");
       expect(
-        await dataSource.saveCode(code),
-        const Empty(),
+        await dataSource.saveCode(code).run(),
+        const Right(code),
       );
 
       expect(

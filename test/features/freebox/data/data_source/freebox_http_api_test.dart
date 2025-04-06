@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:freebox_remote_controller/core/result/result.dart';
 import 'package:freebox_remote_controller/features/freebox/data/data_source/freebox_http_api.dart';
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_code.dart';
@@ -26,8 +27,8 @@ void main() {
         ).thenAnswer(
           (_) async => httpResponseFromObject("ok", 200),
         );
-        final res = await api.sendCommand(code: code, input: input);
-        expect(res, const Empty());
+        final res = await api.sendCommand(code: code, input: input).run();
+        expect(res, const Right(unit));
       });
 
       test("error", () async {
@@ -36,9 +37,10 @@ void main() {
         ).thenAnswer(
           (_) async => httpResponseFromObject("error", 400),
         );
+        final res = await api.sendCommand(code: code, input: input).run();
         expect(
-          () async => await api.sendCommand(code: code, input: input),
-          throwsA('"error"'),
+          res,
+          const Left<Failure, Unit>(Failure(message: '"error"')),
         );
       });
     });
