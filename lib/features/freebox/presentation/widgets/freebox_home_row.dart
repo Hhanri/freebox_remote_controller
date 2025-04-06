@@ -12,7 +12,7 @@ class FreeboxHomeRow extends StatelessWidget {
     required this.onLongPress,
   });
 
-  late final List<FreeboxControllerBox> controls = [
+  late final controls = [
     const FreeboxControllerPlaceholderBox(),
     FreeboxInputButtonWidget.text(
       text: "FREE",

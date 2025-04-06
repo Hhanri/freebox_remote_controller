@@ -12,7 +12,7 @@ class FreeboxMediaControlPad extends StatelessWidget {
     required this.onLongPress,
   });
 
-  late final List<FreeboxControllerBox> controls = [
+  late final controls = [
     FreeboxInputButtonWidget.icon(
       input: FreeboxInputs.volUp,
       iconData: Icons.add,

@@ -46,4 +46,13 @@ final class HoldEgdHandler extends EnhancedGestureDetectorModel {
 
   @override
   void onTap() {}
+
+  @override
+  void didChangeDependencies(State<StatefulWidget> state) {}
+
+  @override
+  void didUpdateWidget(State<StatefulWidget> state) {}
+
+  @override
+  void reassemble(State<StatefulWidget> state) {}
 }

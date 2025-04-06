@@ -16,7 +16,7 @@ class EnhancedGestureDetector extends StatefulWidget {
 }
 
 class _EnhancedGestureDetectorState extends State<EnhancedGestureDetector>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
@@ -27,10 +27,37 @@ class _EnhancedGestureDetectorState extends State<EnhancedGestureDetector>
 
   @override
   void dispose() {
+    print("dispose");
     for (final m in widget.models) {
       m.dispose();
     }
     super.dispose();
+  }
+
+  @override
+  void reassemble() {
+    for (final m in widget.models) {
+      m.reassemble(this);
+    }
+    super.reassemble();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print("did change dependencies");
+    for (final m in widget.models) {
+      m.didChangeDependencies(this);
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant EnhancedGestureDetector oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print("did  update widget");
+    for (final m in widget.models) {
+      m.didUpdateWidget(this);
+    }
   }
 
   void _onTap() {

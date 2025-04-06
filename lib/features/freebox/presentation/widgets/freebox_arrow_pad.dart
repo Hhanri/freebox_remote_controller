@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:freebox_remote_controller/features/freebox/presentation/widgets/freebox_controller_box.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/widgets/freebox_input_button_widget.dart';
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_input.dart';
 
@@ -12,7 +11,7 @@ class FreeboxArrowPad extends StatelessWidget {
     required this.onLongPress,
   });
 
-  late final List<FreeboxControllerBox> controls = [
+  late final controls = [
     FreeboxInputButtonWidget.icon(
       input: FreeboxInputs.red,
       iconData: Icons.arrow_back_ios_new,

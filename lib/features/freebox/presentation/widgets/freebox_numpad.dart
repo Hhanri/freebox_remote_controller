@@ -12,7 +12,7 @@ class FreeboxNumpad extends StatelessWidget {
     required this.onLongPress,
   });
 
-  late final List<FreeboxControllerBox> numPad = [
+  late final numPad = [
     FreeboxInputButtonWidget.text(
       input: FreeboxInputs.n1,
       onTap: onTap,

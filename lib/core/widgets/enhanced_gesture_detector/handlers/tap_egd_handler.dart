@@ -29,4 +29,13 @@ final class TapEgdHandler extends EnhancedGestureDetectorModel {
   void onTap() {
     onPressed();
   }
+
+  @override
+  void didChangeDependencies(State<StatefulWidget> state) {}
+
+  @override
+  void didUpdateWidget(State<StatefulWidget> state) {}
+
+  @override
+  void reassemble(State<StatefulWidget> state) {}
 }
