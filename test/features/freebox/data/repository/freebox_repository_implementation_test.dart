@@ -42,13 +42,13 @@ void main() {
         when(
           localDataSource.getCode,
         ).thenAnswer(
-          (_) async => code,
+          (_) => TaskEither.right(const Option.of(code)),
         );
 
         final res = await repo.getCode().run();
         expect(
           res,
-          const Right<Failure, Success<FreeboxCode?>>(Success(value: code)),
+          const Right(Option.of(code)),
         );
       });
     });
@@ -70,89 +70,61 @@ void main() {
         when(
           () => localDataSource.saveCode(code),
         ).thenAnswer(
-          (_) async => const Empty(),
+          (_) => TaskEither.right(code),
         );
 
         final res = await repo.saveCode(code).run();
         expect(
           res,
-          const Right(Success(value: Empty())),
+          const Right(code),
         );
       });
     });
 
     group("send command", () {
       const input = FreeboxInputs.ok;
-
-      test("get code error", () async {
-        when(
-          localDataSource.getCode,
-        ).thenThrow(
-          "get code error",
-        );
-
-        final res = await repo.sendCommand(input: input).run();
-
-        expect(
-          res,
-          const Left(Failure(message: "get code error")),
-        );
-      });
-
-      test("get code null", () async {
-        when(
-          localDataSource.getCode,
-        ).thenAnswer(
-          (_) async => null,
-        );
-
-        final res = await repo.sendCommand(input: input).run();
-
-        expect(
-          res,
-          const Left(Failure(message: "Exception: Missing Freebox Code")),
-        );
-      });
-
       const code = FreeboxCode("12345678");
+      const longPress = false;
 
-      test("send command error", () async {
+      test("failure", () async {
         when(
-          localDataSource.getCode,
+          () => freeboxApi.sendCommand(
+            code: code,
+            input: input,
+            longPress: longPress,
+          ),
         ).thenAnswer(
-          (_) async => code,
-        );
-        when(
-          () => freeboxApi.sendCommand(code: code, input: input),
-        ).thenThrow(
-          "send command error",
+          (_) => TaskEither.left(const Failure(message: "message")),
         );
 
-        final res = await repo.sendCommand(input: input).run();
+        final res = await repo
+            .sendCommand(input: input, code: code, longTap: longPress)
+            .run();
 
         expect(
           res,
-          const Left(Failure(message: "send command error")),
+          const Left(Failure(message: "message")),
         );
       });
 
-      test("send command success", () async {
+      test("success", () async {
         when(
-          localDataSource.getCode,
+          () => freeboxApi.sendCommand(
+            code: code,
+            input: input,
+            longPress: longPress,
+          ),
         ).thenAnswer(
-          (_) async => code,
-        );
-        when(
-          () => freeboxApi.sendCommand(code: code, input: input),
-        ).thenAnswer(
-          (_) async => const Empty(),
+          (_) => TaskEither.right(unit),
         );
 
-        final res = await repo.sendCommand(input: input).run();
+        final res = await repo
+            .sendCommand(input: input, code: code, longTap: longPress)
+            .run();
 
         expect(
           res,
-          const Right(Success(value: Empty())),
+          const Right(unit),
         );
       });
     });
