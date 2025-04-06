@@ -1,3 +1,5 @@
+import 'package:fpdart/fpdart.dart';
+import 'package:freebox_remote_controller/core/extensions/fp_extensions.dart';
 import 'package:freebox_remote_controller/core/result/result.dart';
 import 'package:freebox_remote_controller/features/freebox/data/data_source/freebox_local_data_source.dart';
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_code.dart';
@@ -12,15 +14,25 @@ final class FreeboxSPLocalDataSource
   static const codeKey = "code";
 
   @override
-  Future<FreeboxCode?> getCode() async {
-    final val = sp.getString(codeKey);
-    if (val == null || val == "") return null;
-    return FreeboxCode(val);
+  TaskEither<Failure, Option<FreeboxCode>> getCode() {
+    return TaskEither.tryCatch(
+      () async {
+        return Option.fromNullable(
+          sp.getString(codeKey)?.map((s) => FreeboxCode(s)),
+        );
+      },
+      (e, _) => Failure(message: e.toString()),
+    );
   }
 
   @override
-  Future<Empty> saveCode(FreeboxCode code) async {
-    await sp.setString(codeKey, code.value);
-    return const Empty();
+  TaskEither<Failure, FreeboxCode> saveCode(FreeboxCode code) {
+    return TaskEither.tryCatch(
+      () async {
+        await sp.setString(codeKey, code.value);
+        return code;
+      },
+      (e, _) => Failure(message: e.toString()),
+    );
   }
 }

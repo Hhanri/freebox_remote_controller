@@ -4,11 +4,12 @@ import 'package:freebox_remote_controller/features/freebox/value_objects/freebox
 import 'package:freebox_remote_controller/features/freebox/value_objects/freebox_input.dart';
 
 abstract interface class FreeboxRepositoryInterface {
-  TaskEither<Failure, EmptySuccess> saveCode(FreeboxCode code);
+  TaskEither<Failure, FreeboxCode> saveCode(FreeboxCode code);
 
-  TaskEither<Failure, Success<FreeboxCode?>> getCode();
+  TaskEither<Failure, Option<FreeboxCode>> getCode();
 
-  TaskEither<Failure, EmptySuccess> sendCommand({
+  TaskEither<Failure, Unit> sendCommand({
+    required FreeboxCode code,
     required FreeboxInput input,
     bool longTap = false,
   });

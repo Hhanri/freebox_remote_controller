@@ -17,24 +17,25 @@ final class FreeboxRepositoryImplementation
   });
 
   @override
-  TaskEither<Failure, Success<FreeboxCode?>> getCode() {
-    return execute(() => localDataSource.getCode());
+  TaskEither<Failure, Option<FreeboxCode>> getCode() {
+    return localDataSource.getCode();
   }
 
   @override
-  TaskEither<Failure, EmptySuccess> saveCode(FreeboxCode code) {
-    return execute(() => localDataSource.saveCode(code));
+  TaskEither<Failure, FreeboxCode> saveCode(FreeboxCode code) {
+    return localDataSource.saveCode(code);
   }
 
   @override
-  TaskEither<Failure, EmptySuccess> sendCommand({
+  TaskEither<Failure, Unit> sendCommand({
+    required FreeboxCode code,
     required FreeboxInput input,
     bool longTap = false,
   }) {
-    return execute(() async {
-      final code = await localDataSource.getCode();
-      if (code == null) throw Exception("Missing Freebox Code");
-      return freeboxApi.sendCommand(code: code, input: input);
-    });
+    return freeboxApi.sendCommand(
+      code: code,
+      input: input,
+      longPress: longTap,
+    );
   }
 }
