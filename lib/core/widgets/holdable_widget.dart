@@ -20,19 +20,39 @@ class HoldableWidget extends StatefulWidget {
   State<HoldableWidget> createState() => _HoldableWidgetState();
 }
 
-class _HoldableWidgetState extends State<HoldableWidget> {
+class _HoldableWidgetState extends State<HoldableWidget>
+    with SingleTickerProviderStateMixin {
   Timer? _periodic;
   bool _holding = false;
+
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      lowerBound: 0.0,
+      upperBound: 0.2,
+      duration: const Duration(milliseconds: 200),
+    )
+      ..drive(CurveTween(curve: Curves.easeInOut))
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed && _holding == false) {
+          _animationController.reverse();
+        }
+      });
+  }
 
   @override
   void dispose() {
     _periodic?.cancel();
+    _animationController.dispose();
     super.dispose();
   }
 
   void _onLongPressStart(LongPressStartDetails _) {
     if (_holding == true || widget.whileHolding == null) return;
-    print("start long press");
     _holding = true;
     _periodic = Timer.periodic(
       widget.delay,
@@ -41,7 +61,6 @@ class _HoldableWidgetState extends State<HoldableWidget> {
   }
 
   void _onLongPressEnd(LongPressEndDetails _) {
-    print("stop long press");
     _periodic?.cancel();
     _holding = false;
   }
@@ -49,10 +68,28 @@ class _HoldableWidgetState extends State<HoldableWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onTap,
-      onLongPressStart: _onLongPressStart,
-      onLongPressEnd: _onLongPressEnd,
-      child: widget.childBuilder(context),
+      onTap: () {
+        _animationController.forward();
+        widget.onTap?.call();
+      },
+      onLongPressStart: (_) {
+        _animationController.forward();
+        _onLongPressStart(_);
+      },
+      onLongPressEnd: (_) {
+        _onLongPressEnd(_);
+        _animationController.reverse();
+      },
+      child: AnimatedBuilder(
+        animation: _animationController,
+        builder: (BuildContext context, Widget? child) {
+          return Transform.scale(
+            scale: 1 - _animationController.value,
+            child: child,
+          );
+        },
+        child: widget.childBuilder(context),
+      ),
     );
   }
 }
