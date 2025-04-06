@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freebox_remote_controller/core/widgets/holdable_widget.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/widgets/freebox_controller_box.dart';
 
 abstract base class FreeboxButtonWidget extends FreeboxControllerBox {
@@ -17,17 +18,19 @@ abstract base class FreeboxButtonWidget extends FreeboxControllerBox {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return HoldableWidget(
       onTap: onTap,
-      onLongPress: onLongPress,
-      child: ColoredBox(
-        color: backgroundColor,
-        child: FittedBox(
-          child: Center(
-            child: childBuilder(context),
+      whileHolding: onLongPress,
+      childBuilder: (context) {
+        return ColoredBox(
+          color: backgroundColor,
+          child: FittedBox(
+            child: Center(
+              child: childBuilder(context),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
