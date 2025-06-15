@@ -15,4 +15,6 @@ abstract interface class IAlertWindow {
   Future<void> hide();
 
   Future<bool> isActive();
+
+  Future<void> updateScale(double scaleFactor);
 }

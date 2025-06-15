@@ -7,6 +7,12 @@ final class AlertWindowImpl implements IAlertWindow {
 
   AlertWindowImpl._();
 
+  int _width = -1 >>> 1;
+  int get _height => (_width * 3 / 4).round();
+
+  Size get _deviceSize =>
+      WidgetsBinding.instance.platformDispatcher.views.first.physicalSize;
+
   @override
   Future<void> hide() {
     return FlutterOverlayWindow.closeOverlay();
@@ -26,16 +32,32 @@ final class AlertWindowImpl implements IAlertWindow {
   @override
   Future<void> show(BuildContext context) async {
     if (await isActive() == true) return;
+    final w = WidgetsBinding
+        .instance.platformDispatcher.views.first.physicalSize.width;
+    setWidth((w / 2).round());
 
-    final mq =
-        WidgetsBinding.instance.platformDispatcher.views.first.physicalSize;
-    final w = mq.width / 2;
-    final h = w * 3 / 4;
-
-    await FlutterOverlayWindow.showOverlay(
+    return FlutterOverlayWindow.showOverlay(
       enableDrag: true,
-      width: w.round(),
-      height: h.round(),
+      width: _width,
+      height: _height,
+    );
+  }
+
+  void setWidth(int width) {
+    _width = width;
+  }
+
+  void scale(double scaleFactor) {
+    _width = (_width * scaleFactor).round();
+  }
+
+  @override
+  Future<void> updateScale(double scaleFactor) {
+    scale(scaleFactor);
+    return FlutterOverlayWindow.resizeOverlay(
+      _width,
+      _height,
+      true,
     );
   }
 
