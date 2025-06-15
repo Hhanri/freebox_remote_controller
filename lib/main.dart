@@ -17,6 +17,11 @@ void main() async {
   runApp(const MyApp());
 }
 
+@pragma("vm:entry-point")
+void overlayMain() {
+  main();
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
