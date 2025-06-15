@@ -17,7 +17,8 @@ class CustomPopupMenuItem extends StatelessWidget {
       child: Row(
         children: [
           Icon(icon),
-          Text(text),
+          const SizedBox(width: 12),
+          Flexible(child: Text(text)),
         ],
       ),
     );
