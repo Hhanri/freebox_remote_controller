@@ -4,10 +4,18 @@ import 'package:freebox_remote_controller/config/setup_container.dart';
 import 'package:freebox_remote_controller/core/utils/show_snackbar.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/cubits/freebox_code_cubit/freebox_code_cubit.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/cubits/freebox_controller_cubit/freebox_controller_cubit.dart';
+import 'package:freebox_remote_controller/features/freebox/presentation/pages/freebox_remote_controller_minimized_page.dart';
 import 'package:freebox_remote_controller/features/freebox/presentation/pages/freebox_remote_controller_page.dart';
 
 class FreeboxRemoteControllerPageWrapper extends StatelessWidget {
-  const FreeboxRemoteControllerPageWrapper({super.key});
+  final Widget child;
+
+  const FreeboxRemoteControllerPageWrapper({super.key, required this.child});
+
+  const FreeboxRemoteControllerPageWrapper.main({super.key})
+      : child = const FreeboxRemoteControllerPage();
+  const FreeboxRemoteControllerPageWrapper.minimized({super.key})
+      : child = const FreeboxRemoteControllerMinimizedPage();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +45,7 @@ class FreeboxRemoteControllerPageWrapper extends StatelessWidget {
             },
           ),
         ],
-        child: const FreeboxRemoteControllerPage(),
+        child: child,
       ),
     );
   }

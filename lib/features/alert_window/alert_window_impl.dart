@@ -25,15 +25,17 @@ final class AlertWindowImpl implements IAlertWindow {
 
   @override
   Future<void> show(BuildContext context) async {
+    if (await isActive() == true) return;
+
     final mq =
         WidgetsBinding.instance.platformDispatcher.views.first.physicalSize;
-    final w = mq.width;
-    final h = mq.height;
-    if (await isActive() == true) return;
+    final w = mq.width / 2;
+    final h = w * 3 / 4;
+
     await FlutterOverlayWindow.showOverlay(
       enableDrag: true,
-      width: (w / 3).round(),
-      height: (h / 3).round(),
+      width: w.round(),
+      height: h.round(),
     );
   }
 

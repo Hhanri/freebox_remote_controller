@@ -15,20 +15,18 @@ class FreeboxRemoteControllerMinimizedPage extends StatelessWidget {
     final onLongPress = cubit.onLongPress;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            FreeboxPowerRow(onTap: onTap, onLongPress: onLongPress),
-            const SizedBox(height: 12),
-            FreeboxHomeRow(onTap: onTap, onLongPress: onLongPress),
-            const SizedBox(height: 12),
-            FreeboxMediaControlPad(onTap: onTap, onLongPress: onLongPress)
-          ],
-        ),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          FreeboxPowerRow(onTap: onTap, onLongPress: onLongPress),
+          FreeboxHomeRow(onTap: onTap, onLongPress: onLongPress),
+          FreeboxMediaControlPad(
+            onTap: onTap,
+            onLongPress: onLongPress,
+          )
+        ],
       ),
     );
   }

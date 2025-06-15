@@ -18,8 +18,20 @@ void main() async {
 }
 
 @pragma("vm:entry-point")
-void overlayMain() {
-  main();
+void overlayMain() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupContainer();
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: SystemStrings.appTitle,
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.blue,
+      ),
+      home: const FreeboxRemoteControllerPageWrapper.minimized(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -34,7 +46,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: Colors.blue,
       ),
-      home: const FreeboxRemoteControllerPageWrapper(),
+      home: const FreeboxRemoteControllerPageWrapper.main(),
     );
   }
 }
